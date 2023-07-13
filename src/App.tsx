@@ -59,9 +59,26 @@ function App() {
 
 // Firebase
 
+const [teste, setTeste] = useState("")
+
+async function firebaseApiTestLab(){
+  const URL_TestLab = "urlFirebaseJson"
+  try{
+    const response = await axios.get(URL_TestLab)
+    const data = response.data
+    setTeste(JSON.stringify(data))
+  } 
+  catch(error){
+    console.log("Deu erro")
+  }
+}
+
+firebaseApiTestLab()
+
   return (
     <div className="App" >
       <img src={data} alt="" />
+      <p>{teste}</p>
     </div>
   );
 }
