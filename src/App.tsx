@@ -57,14 +57,28 @@ function App() {
   jsonPlaceholderAPI()
 
 
-// Firebase
+// mocklab
 
 const [teste, setTeste] = useState("")
+const URL_TestLab = "https://6jkj1.mocklab.io/json"
 
-async function firebaseApiTestLab(){
-  const URL_TestLab = "urlFirebaseJson"
+async function postInfo(){
   try{
-    const response = await axios.get(URL_TestLab)
+     await axios.post(URL_TestLab,
+       {
+        "id": 12345,
+        "value": "abc-def-ghi"
+      })
+      // await firebaseApiTestLab()
+  }
+  catch(error){
+    console.log(error)
+  }
+}
+
+async function getTest(){
+  try{
+    const response = await axios.get("https://6jkj1.mocklab.io/json/1")
     const data = response.data
     setTeste(JSON.stringify(data))
   } 
@@ -73,11 +87,38 @@ async function firebaseApiTestLab(){
   }
 }
 
-firebaseApiTestLab()
+async function putTeste(){
+  try{
+      await axios.put("https://6jkj1.mocklab.io/json/2")
+      
+      // Comum
+      // await axios.put (URL, body(todas as infos do usuario e mudar as chaves que quer mudar))
+  }
+  catch(error){
+    console.log(error)
+  }
+}
+
+async function deleteTeste(){
+  try {
+    await axios.delete("https://6jkj1.mocklab.io/fault")
+
+    // Comum
+    // await axios.delete (minhaURL/:id -> id de quem quer deletar, header (por conta de autorizacao))
+  }
+  catch(error){
+    console.log(error)
+  }
+}
+
 
   return (
     <div className="App" >
       <img src={data} alt="" />
+      <button onClick={postInfo}>teste</button>
+      <button onClick={getTest}>get</button>
+      <button onClick={putTeste}>put</button>
+      <button onClick={deleteTeste}>delete</button>
       <p>{teste}</p>
     </div>
   );
