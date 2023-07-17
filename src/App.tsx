@@ -69,7 +69,6 @@ async function postInfo(){
         "id": 12345,
         "value": "abc-def-ghi"
       })
-      // await firebaseApiTestLab()
   }
   catch(error){
     console.log(error)
@@ -111,14 +110,64 @@ async function deleteTeste(){
   }
 }
 
+// Firebase
+
+const URL_FIREBASE = ""
+
+async function getUser(){
+  try{
+    const response = await axios.get(URL_FIREBASE + ".json")
+    const data = response.data
+    console.log(data)
+  }
+  catch(error){
+    console.log(error)
+  }
+}
+
+async function postUser(){
+  try{
+     await axios.post(URL_FIREBASE + ".json",
+       {
+        "id": 2,
+        "name": "Robert"
+      })
+  }
+  catch(error){
+    console.log(error)
+  }
+}
+
+async function putUser(){
+  try{
+     await axios.put(URL_FIREBASE + "/:id.json",
+       {
+        "id": 2,
+        "name": "Teste"
+      })
+  }
+  catch(error){
+    console.log(error)
+  }
+}
+
+async function deleteUser(){
+  try{
+     await axios.delete(URL_FIREBASE + "/:id.json")
+  }
+  catch(error){
+    console.log(error)
+  }
+}
+
 
   return (
     <div className="App" >
       <img src={data} alt="" />
-      <button onClick={postInfo}>teste</button>
-      <button onClick={getTest}>get</button>
-      <button onClick={putTeste}>put</button>
-      <button onClick={deleteTeste}>delete</button>
+      <button onClick={postUser}>post</button>
+      <button onClick={getUser}>get</button>
+      <button onClick={putUser}>put</button>
+      <button onClick={deleteUser}>delete</button>
       <p>{teste}</p>
     </div>
   );
